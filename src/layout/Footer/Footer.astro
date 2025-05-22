@@ -5,9 +5,13 @@ import AppLogo from '@/components/common/AppLogo';
 
 import { FULL_NAME } from '@/constants/config';
 import { SOCIAL_NETWORKS } from '@/constants/config';
-import { PAGE_SECTIONS } from '@/constants/sections';
 
 const year = new Date().getFullYear();
+
+Astro.response.headers.set(
+	'CDN-Cache-Control',
+	'public, max-age=45, must-revalidate',
+);
 ---
 
 <footer

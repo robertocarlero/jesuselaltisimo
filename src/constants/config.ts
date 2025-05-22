@@ -3,6 +3,7 @@ export const SITE_TITLE = `Iglesia cristiana ${FULL_NAME}`;
 export const SITE_DESCRIPTION =
   "Somos una comunidad de fe que evangeliza y discipula familias, transformando vidas mediante el estudio de la Palabra y el amor de Dios.";
 export const USERNAME = "jesuselaltisimo";
+export const SITE_KEYWORDS = `${FULL_NAME}, gracia, cristiandad, cristianismo, iglesia evangélica, lara, venezuela, barquisimeto, evangélica, evangelio, cristianos, comunidad, jesus, Dios, dios, ayuda, acción social, iglesia, iglesia cristiana, iglesia en venezuela, iglesia lara, iglesia barquisimeto, iglesia en barquisimeto`;
 
 export const WHATSAPP_CONFIG = {
   url: "https://api.whatsapp.com/send/?phone=584167552089",
