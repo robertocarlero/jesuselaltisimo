@@ -1,16 +1,19 @@
 ---
+import Layout from '@/layout/Layout';
 
+import Hero from '@/components/sections/Hero';
+import About from '@/components/sections/About';
+import Cards from '@/components/sections/Cards';
+import Creed from '@/components/sections/Creed';
+import Info from '@/components/sections/Info';
+import Calendar from '@/components/sections/Calendar';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<Hero />
+	<About />
+	<Cards />
+	<Creed />
+	<Info />
+	<Calendar />
+</Layout>

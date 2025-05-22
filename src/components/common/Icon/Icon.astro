@@ -1,0 +1,49 @@
+---
+import { Icon as AstroIcon } from 'astro-icon/components';
+
+import type { Colors, Sizes } from '@/constants/types';
+
+type Props = {
+	name: string;
+	size?: Sizes;
+	color?: Colors;
+	class?: string;
+};
+
+const {
+	size = 'md',
+	color = 'primary',
+	name,
+	class: className,
+	...props
+} = Astro.props;
+
+const widthSizeClasses = {
+	xs: 'w-4',
+	sm: 'w-5',
+	md: 'w-6',
+	lg: 'w-8',
+	xl: 'w-12',
+};
+
+const heightSizeClasses = {
+	xs: 'h-4',
+	sm: 'h-5',
+	md: 'h-6',
+	lg: 'h-8',
+	xl: 'h-12',
+};
+---
+
+<div
+	class:list={[
+		'flex justify-center items-center rounded-full',
+		widthSizeClasses[size],
+		heightSizeClasses[size],
+		`text-${color}`,
+		className,
+	]}
+	{...props}
+>
+	<AstroIcon class:list={['w-full h-full', `fill-${color}`]} name={name} />
+</div>

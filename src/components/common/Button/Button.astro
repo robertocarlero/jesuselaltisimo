@@ -1,0 +1,62 @@
+---
+import type { ButtonModes, Colors, Sizes } from '@/constants/types';
+
+import {
+	BG_COLORS_CLASSES,
+	BG_COLORS_HOVER_CLASSES,
+	BG_COLORS_ACTIVE_CLASSES,
+} from '@/constants/theme';
+
+type Props = {
+	class?: string;
+	shadow?: string;
+	mode?: ButtonModes;
+	color?: Colors;
+	textColor?: Colors;
+	size?: Sizes;
+};
+
+const {
+	mode = 'fill',
+	class: className,
+	color = 'primary',
+	textColor = 'light',
+	shadow = '',
+	size = 'md',
+	...props
+} = Astro.props;
+
+const isFilled = mode === 'fill';
+
+const bgColor = isFilled ? BG_COLORS_CLASSES[color] : 'bg-transparent';
+const bgColorOnHover = isFilled ? BG_COLORS_HOVER_CLASSES[color] : '';
+const bgColorOnPressed = isFilled ? BG_COLORS_ACTIVE_CLASSES[color] : '';
+const borderClass = `border-${
+	mode === 'outline' ? `-${color} border-2 border-solid` : '0'
+}`;
+
+const paddingClasses: Record<Sizes, string> = {
+	xs: 'py-2 px-2',
+	sm: 'py-2 px-4',
+	md: 'py-3 px-6',
+	lg: 'py-4 px-8',
+	xl: 'py-5 px-10',
+};
+---
+
+<button
+	class:list={[
+		'flex justify-center items-center gap-2 font-bold rounded-lg elevation-sm',
+		`text-${textColor}-tint`,
+		`shadow${!shadow ? '' : `-${shadow}`}`,
+		paddingClasses[size],
+		bgColor,
+		bgColorOnHover,
+		bgColorOnPressed,
+		borderClass,
+		className,
+	]}
+	{...props}
+>
+	<slot /></button
+>

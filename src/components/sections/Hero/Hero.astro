@@ -1,0 +1,101 @@
+---
+import { Image } from 'astro:assets';
+
+import Button from '@/components/common/Button';
+import Icon from '@/components/common/Icon';
+
+import { FULL_NAME, WHATSAPP_CONFIG } from '@/constants/config';
+
+import banner from '@/assets/images/hero-image.jpg';
+import { SECTIONS } from '@/constants/sections';
+---
+
+<section
+	id="#"
+	class="w-full h-screen flex items-center justify-center bg-no-repeat bg-cover bg-center p-5 bg-dark"
+>
+	<Image
+		width={banner.width}
+		height={banner.height}
+		src={banner}
+		alt="Un predicador con una bandera de Jesús"
+		id="imageBg"
+	/>
+	<div class="w-full flex flex-col items-center">
+		<div class="w-full flex flex-col items-center">
+			<h1
+				class="text-primary text-center opacity-70 uppercase tracking-widest font-light"
+			>
+				Iglesia cristiana en Barquisimeto
+			</h1>
+			<div class="flex gap-2">
+				<h2
+					class="text-primary text-center text-3xl md:text-4xl font-bold"
+				>
+					Únete a nuestra gran familia
+				</h2>
+			</div>
+			<p class="text-primary text-center lg:text-xl font-light mt-5">
+				Una comunidad unida en Dios, dedicada a adorar, bendecir y
+				transformar vidas.
+			</p>
+		</div>
+		<a
+			aria-label={`Ir al chat de Whatsapp de ${FULL_NAME}`}
+			href=`${WHATSAPP_CONFIG.url}&text=${WHATSAPP_CONFIG.message}`
+			target="_blank"
+		>
+			<Button class="mt-12 text-secondary">
+				Enviar mensaje <Icon
+					size="xs"
+					name="whatsapp"
+					color="secondary"
+				/>
+			</Button>
+		</a>
+		<a
+			class="absolute bg-primary/10 p-4 h-12 w-12 rounded-full bottom-16"
+			href={SECTIONS.IDENTITY.path}
+			title="Ir al contenido"
+			aria-label="Ir al contenido"
+			id="arrow"
+		>
+			<Icon size="xs" name="arrow-right" class="rotate-90" />
+		</a>
+	</div>
+</section>
+
+<style lang="scss">
+	#arrow {
+		animation: arrow-animation 1.5s infinite;
+	}
+	section {
+		position: relative;
+		overflow: hidden;
+		#imageBg {
+			position: absolute;
+			top: -50px;
+			left: 0;
+			width: 100%;
+			height: calc(100% + 50px);
+			object-fit: cover;
+
+			filter: brightness(0.5);
+		}
+		& > div {
+			z-index: 10;
+		}
+	}
+
+	@keyframes arrow-animation {
+		0% {
+			transform: translateY(0);
+
+			opacity: 0;
+		}
+		100% {
+			transform: translateY(50px);
+			opacity: 1;
+		}
+	}
+</style>

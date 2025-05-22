@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+
+import SectionHeader from '@/components/common/SectionHeader';
+
+import { SECTIONS } from '@/constants/sections';
+
+import mission from '@/assets/images/mission.jpg';
+import vision from '@/assets/images/vision.jpg';
+
+const items = [
+	{
+		image: {
+			src: mission,
+			alt: 'Coro cristiano cantando.',
+		},
+		title: 'Misión',
+		description:
+			'Facilitamos un ambiente donde Dios es adorado, los hermanos se edifican mutuamente y el evangelio es proclamado, todo con el propósito supremo de glorificar a Dios en todo y con todo.',
+	},
+	{
+		image: {
+			src: vision,
+			alt: 'Un grupo de hombres sonriendo en la iglesia.',
+		},
+		title: 'Visión',
+		description:
+			'Ser una gran familia en la que cada miembro ame a Dios, se ame mutuamente y lleve el mensaje del Evangelio a la comunidad, impactando vidas y viéndolas transformadas por Su poder.',
+	},
+];
+---
+
+<section
+	class="w-full bg-primary rounded-3xl p-4 md:p-6 py-12 lg:py-24 flex flex-col items-center"
+	id={SECTIONS.IDENTITY.path.replace('#', '')}
+>
+	<SectionHeader
+		title="Nuestra Misión y Visión"
+		description="Unidos en fe y propósito para glorificar a Dios"
+		color="secondary"
+	/>
+
+	<div class="w-full max-w-5xl flex flex-col gap-4 md:gap-6">
+		{
+			items.map((person, i) => {
+				const image = (
+					<Image
+						src={person?.image.src}
+						class="w-full aspect-[16/9] object-cover rounded-md md:rounded-xl"
+						alt={person?.image.alt}
+					/>
+				);
+				return (
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+						{i % 2 === 0 && image}
+						<div class="rounded-md md:rounded-xl w-full flex-1 p-4 md:p-6 lg:p-8 border border-secondary">
+							<h3 class="uppercase text-xl md:text-2xl font-bold text-secondary">
+								{person.title}
+							</h3>
+							<hr class="w-4 text-secondary my-2" />
+							<p class="lg:text-xl font-light text-secondary">
+								{person.description}
+							</p>
+						</div>
+						{i % 2 !== 0 && image}
+					</div>
+				);
+			})
+		}
+	</div>
+</section>

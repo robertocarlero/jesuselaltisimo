@@ -1,0 +1,31 @@
+---
+import BaseHead from '../BaseHead';
+import Header from '../Header';
+import Footer from '../Footer';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../constants/config';
+
+export const prerender = true;
+
+type Props = {
+	title?: string;
+	description?: string;
+};
+
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+---
+
+<html lang="es">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body>
+		<main class="h-screen w-full m-auto">
+			<Header />
+			<section class="w-full min-h-screen">
+				<slot />
+			</section>
+			<Footer />
+		</main>
+	</body>
+</html>

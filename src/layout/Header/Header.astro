@@ -1,0 +1,21 @@
+---
+import AppLogo from '@/components/common/AppLogo';
+import NavList from '../NavList';
+---
+
+<header
+	class="flex justify-between items-center h-[60px] w-full p-3 md:px-10 md:py-7 bg-secondary md:bg-transparent fixed z-20"
+>
+	<AppLogo />
+	<NavList />
+</header>
+
+<script>
+	const toggleClasses = () => {
+		const header = document.querySelector('header');
+		header?.classList?.toggle('md:bg-transparent', window.scrollY === 0);
+	};
+	document.addEventListener('scroll', toggleClasses);
+	document.addEventListener('resize', toggleClasses);
+	document.addEventListener('DOMContentLoaded', toggleClasses);
+</script>

@@ -1,0 +1,12 @@
+---
+import { SECTIONS } from '@/constants/sections';
+import { FULL_NAME } from '@/constants/config';
+
+import logo from '@/assets/logo.svg';
+
+const { width = 150, height = 35, ...props } = Astro.props;
+---
+
+<a aria-label="Volver al home" href={SECTIONS.HOME.path} {...props}>
+	<img src={logo.src} width={width} height={height} alt={`Texto '${FULL_NAME}' `} />
+</a>

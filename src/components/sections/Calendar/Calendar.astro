@@ -1,0 +1,30 @@
+---
+import SectionHeader from '@/components/common/SectionHeader';
+
+import { WEEK_CALENDAR } from '@/constants/config';
+---
+
+<section
+	class="w-full bg-primary p-4 md:p-6 py-12 lg:py-24 flex flex-col items-center"
+	id="quote"
+>
+	<SectionHeader
+		title="Actividades Semanales"
+		description="Únete a nuestras actividades y crece en la fe"
+		color="secondary"
+	/>
+	<div class="w-full max-w-5xl grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+		{
+			WEEK_CALENDAR.map(({ day, content }) => (
+				<div class="w-full  p-3 flex gap-3 bg-secondary rounded">
+					<div class="flex flex-col">
+						<h2 class="text-primary text-lg font-bold">{day}</h2>
+						<p class="text-primary font-light text-sm whitespace-pre-line">
+							{content}
+						</p>
+					</div>
+				</div>
+			))
+		}
+	</div>
+</section>

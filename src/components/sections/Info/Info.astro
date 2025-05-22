@@ -1,0 +1,74 @@
+---
+import Icon from '@/components/common/Icon/Icon.astro';
+import SectionHeader from '@/components/common/SectionHeader';
+import { SECTIONS } from '@/constants/sections';
+
+const location =
+	'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.490173256816!2d-69.3787694197655!3d10.058862398264074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e8766a1ddeebcf7%3A0x5ced10e88056e815!2zSmVzw7pzIGVsIEFsdMOtc2ltbw!5e0!3m2!1ses-419!2sve!4v1747838587704!5m2!1ses-419!2sve';
+
+const items = [
+	{
+		title: 'Horario de servicios',
+		description: 'Domingos de 8:00 y 10:15 am',
+		icon: 'clock',
+	},
+	{
+		title: 'Correo',
+		description: 'jesuselaltisimo@gmail.com',
+		icon: 'envelope',
+	},
+	{
+		title: 'Teléfono',
+		description: '+58 0416-7552089 - 02514430030',
+		icon: 'phone',
+	},
+	{
+		title: 'Dirección',
+		description: 'CL 6 CR 3 Barrio Santa Isabel, Barquisimeto',
+		icon: 'map',
+	},
+];
+---
+
+<section
+	class="w-full p-4 md:p-6 py-12 lg:py-24 flex flex-col items-center bg-secondary"
+	id={SECTIONS.CONTACT.path.replace('#', '')}
+>
+	<SectionHeader
+		title="Contáctanos"
+		description="Estamos aquí para servirte"
+	/>
+	<div
+		class="w-full max-w-5xl flex flex-col gap-6 md:flex-row rounded overflow-hidden"
+	>
+		<div class="w-full flex flex-col gap-6">
+			{
+				items.map(({ title, description, icon }) => (
+					<div class="flex gap-2 bg-primary p-2 rounded">
+						<div class="bg-secondary flex items-center justify-center w-12 h-12 shrink-0 rounded">
+							<Icon name={icon} />
+						</div>
+						<div class="flex flex-col">
+							<h2 class="font-semibold text-secondary">
+								{title}
+							</h2>
+							<p class="text-dark text-sm">{description}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+		<div class="w-full aspect-[16/9] rounded overflow-hidden">
+			<iframe
+				title="Ubicación de Amor y Gracia"
+				src={location}
+				class="w-full h-full"
+				style="border:0;"
+				allowfullscreen=""
+				loading="lazy"
+				referrerpolicy="no-referrer-when-downgrade"
+			>
+			</iframe>
+		</div>
+	</div>
+</section>

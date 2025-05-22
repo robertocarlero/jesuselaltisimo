@@ -1,0 +1,50 @@
+---
+import Icon from '@/components/common/Icon';
+import NavListItem from '../NavListItem';
+
+import { PAGE_SECTIONS } from '@/constants/sections';
+---
+
+<script>
+	const navLinks = document.querySelectorAll('.nav-link');
+	const navLinksArray = Array.from(navLinks);
+
+	navLinksArray.forEach((link) => {
+		link.addEventListener('click', () => {
+			const input = document.getElementById('hidden-input');
+			input?.click();
+		});
+	});
+</script>
+
+<nav class="w-fit flex justify-between">
+	<label class="md:hidden cursor-pointer" for="hidden-input">
+		<Icon name="menu" size="md" color="light" />
+	</label>
+	<input class="hidden" id="hidden-input" type="checkbox" />
+	<ul
+		class="list w-full bg-secondary md:bg-transparent list-none hidden md:flex flex-col md:flex-row gap-3 absolute md:static items-center justify-center"
+	>
+		{
+			PAGE_SECTIONS.filter(({ hidden }) => !hidden).map(
+				({ title, path }) => (
+					<NavListItem id={path} href={path}>
+						{title}
+					</NavListItem>
+				),
+			)
+		}
+	</ul>
+</nav>
+
+<style lang="scss">
+	@media (max-width: 768px) {
+		.list {
+			left: 0;
+		}
+		input:checked + .list {
+			display: flex !important;
+			top: 60px;
+		}
+	}
+</style>

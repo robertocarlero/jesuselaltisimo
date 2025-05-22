@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@config "../../tailwind.config.ts";
+
+* {
+  font-family: "Poppins", serif;
+  font-style: normal;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button,
+[role="button"] {
+  @apply cursor-pointer;
+}

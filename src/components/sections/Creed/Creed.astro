@@ -1,0 +1,21 @@
+---
+import Accordion from '@/components/common/Accordion/Accordion.astro';
+import SectionHeader from '@/components/common/SectionHeader';
+
+import { CREED_ITEMS } from '@/constants/config';
+import { SECTIONS } from '@/constants/sections';
+---
+
+<section
+	class="w-full bg-primary flex flex-col items-center p-4 md:p-6 py-12 lg:py-24"
+	id={SECTIONS.CREED.path.replace('#', '')}
+>
+	<SectionHeader
+		title="En Qué Creemos"
+		description="Nuestros fundamentos doctrinales"
+		color="secondary"
+	/>
+	<div class="w-full max-w-5xl">
+		<Accordion items={CREED_ITEMS} />
+	</div>
+</section>
