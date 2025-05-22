@@ -51,6 +51,7 @@ const imageURL = new URL(image, Astro.url);
 			{ name: 'keywords', content: keywords },
 			{ name: 'generator', content: Astro.generator },
 			{ name: 'viewport', content: 'width=device-width,initial-scale=1' },
+			{ name: 'sitemap', content: '/sitemap-index.xml' },
 			{ name: 'og:type', content: 'website' },
 			{ name: 'og:url', content: Astro.url.toString() },
 			{ name: 'og:title', content: title },
