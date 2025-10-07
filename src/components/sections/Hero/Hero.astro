@@ -6,21 +6,45 @@ import Icon from '@/components/common/Icon';
 
 import { FULL_NAME, WHATSAPP_CONFIG } from '@/constants/config';
 
-import banner from '@/assets/images/hero-image.jpg';
+import heroImage1 from '@/assets/images/hero-1.jpg';
+import heroImage2 from '@/assets/images/hero-2.jpg';
+import heroImage3 from '@/assets/images/hero-image.jpg';
 import { SECTIONS } from '@/constants/sections';
+
+const heroImages = [
+	{
+		src: heroImage1,
+		alt: 'Gran familia cristiana reunida con pantalla mostrando "Somos la Gran Familia Jesús El Altísimo"',
+	},
+	{
+		src: heroImage2,
+		alt: 'Congregación diversa de creyentes con pantalla central mostrando "Jesús El Altísimo" en auditorio moderno',
+	},
+	{
+		src: heroImage3,
+		alt: 'Gran grupo de miembros de la iglesia Jesús El Altísimo, en su mayoría adultos mayores, celebrando un aniversario o evento especial. El fondo está decorado con luces festivas y la palabra "AÑOS" iluminada, creando un ambiente de comunidad y alegría',
+	},
+];
 ---
 
 <section
 	id="#"
 	class="w-full h-screen flex items-center justify-center bg-no-repeat bg-cover bg-center p-5 bg-dark"
 >
-	<Image
-		width={banner.width}
-		height={banner.height}
-		src={banner}
-		alt="Un predicador con una bandera de Jesús"
-		id="imageBg"
-	/>
+	<div id="hero-carousel" class="hero-carousel">
+		{
+			heroImages.map((image, index: number) => (
+				<Image
+					width={image.src.width}
+					height={image.src.height}
+					src={image.src}
+					alt={image.alt}
+					class={`hero-image ${index === 0 ? 'active' : ''}`}
+					data-index={index}
+				/>
+			))
+		}
+	</div>
 	<div class="w-full flex flex-col items-center">
 		<div class="w-full flex flex-col items-center">
 			<h1
@@ -72,17 +96,32 @@ import { SECTIONS } from '@/constants/sections';
 	section {
 		position: relative;
 		overflow: hidden;
-		#imageBg {
+
+		.hero-carousel {
 			position: absolute;
-			top: -50px;
+			top: 0;
 			left: 0;
 			width: 100%;
-			height: calc(100% + 50px);
-			object-fit: cover;
+			height: 100%;
 
-			filter: brightness(0.5);
+			.hero-image {
+				position: absolute;
+				top: -50px;
+				left: 0;
+				width: 100%;
+				height: calc(100% + 50px);
+				object-fit: cover;
+				filter: brightness(0.5);
+				opacity: 0;
+				transition: opacity 1s ease-in-out;
+
+				&.active {
+					opacity: 1;
+				}
+			}
 		}
-		& > div {
+
+		& > div:not(.hero-carousel) {
 			z-index: 10;
 		}
 	}
@@ -99,3 +138,29 @@ import { SECTIONS } from '@/constants/sections';
 		}
 	}
 </style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const heroImages = document.querySelectorAll('.hero-image');
+		let currentIndex = 0;
+
+		function showImage(index: number) {
+			// Remover la clase active de todas las imágenes
+			heroImages.forEach((img) => img.classList.remove('active'));
+
+			// Agregar la clase active a la imagen actual
+			heroImages[index].classList.add('active');
+		}
+
+		function nextImage() {
+			currentIndex = (currentIndex + 1) % heroImages.length;
+			showImage(currentIndex);
+		}
+
+		// Cambiar imagen cada 5 segundos
+		setInterval(nextImage, 5000);
+
+		// Inicializar con la primera imagen
+		showImage(0);
+	});
+</script>
